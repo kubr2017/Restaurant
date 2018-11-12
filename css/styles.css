@@ -6,7 +6,53 @@ body,td,th,p{
 	font-size: 10pt;
 	color: #333;
 	line-height: 1.5;
+	grid-template-columns: 1fr;
+	grid-template-areas:
+	"header"
+	"main"
+	"footer";
 }
+
+header{
+	grid-area: header;
+}
+
+ main{
+	grid-area: main;
+	display: grid;
+	/* grid-template-columns: repeat(auto-fill,minmax(300px,1fr)); */
+	grid-template-areas:
+	"map-container"
+	"restaurants-container"
+}
+
+#map-container{
+	grid-area: map-container;
+}
+
+#restaurants-container{
+	grid-area: restaurants-container;
+	grid-template-areas:
+	"filter-options"
+	"restaurants-list"
+}
+
+.filter-options{
+	grid-area: filter-options;
+}
+
+#restaurants-list{
+	grid-area: restaurants-list;
+	display: grid;
+	grid-template-columns: repeat(auto-fill,minmax(370px,1fr));
+}
+
+
+
+footer{
+	grid-area: footer;
+}
+
 body {
 	background-color: #fdfdfd;
 	margin: 0;
@@ -35,10 +81,12 @@ h1, h2, h3, h4, h5, h6 {
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+
 #maincontent {
   background-color: #f3f3f3;
   min-height: 100%;
 }
+
 #footer {
   background-color: #444;
   color: #aaa;
@@ -145,7 +193,6 @@ nav h1 a {
   min-height: 380px;
   padding: 0 30px 25px;
   text-align: left;
-  width: 270px;
 }
 #restaurants-list .restaurant-img {
   background-color: #ccc;
