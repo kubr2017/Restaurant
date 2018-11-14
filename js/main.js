@@ -3,7 +3,7 @@ let neighborhoods;
 let cuisines;
 var newMap;
 var markers = [];
-var wwwRoot = '/Documents/Projects/Udacity/Projects/Restaurant';
+var wwwRoot = '';
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
