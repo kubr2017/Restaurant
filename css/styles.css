@@ -143,7 +143,7 @@ nav h1 a {
 }
 /* ====================== Map ====================== */
 #map {
-  height: 25vh;
+  height: 45vh;
   width: 100%;
   background-color: #ccc;
 }
@@ -245,4 +245,10 @@ nav h1 a {
 }*/
 .inside img{
 	width:30%;
+}
+
+.inside #map {
+  height: 25vh;
+  width: 100%;
+  background-color: #ccc;
 }
