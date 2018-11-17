@@ -150,9 +150,12 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    let position = restaurant.photograph.length-4;
-    restaurant.photograph = [restaurant.photograph.slice(0,position),'-',device,restaurant.photograph.slice(position)].join('');
-    console.log(restaurant.photograph)
+    //if device tablet or mobile get *tablet.jpg or *mobile.jpg
+    if (device.length){
+      let position = restaurant.photograph.length-4;
+      restaurant.photograph = [restaurant.photograph.slice(0,position),'-',device,restaurant.photograph.slice(position)].join('');
+      console.log(restaurant.photograph)
+    }
     return (`/img/${restaurant.photograph}`);
   }
 

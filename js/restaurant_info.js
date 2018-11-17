@@ -1,12 +1,26 @@
 let restaurant;
+var device = '';
 var newMap;
 
 /**
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  defineDevice();
   initMap();
 });
+
+defineDevice = () => {
+  let  screenWidth = window.innerWidth;
+  if (screenWidth < 768) {
+    device = 'mobile';
+  }
+  else if (screenWidth<=1024) {
+    device = 'tablet';
+  };
+  console.log("-"+device+"+");
+  return device;
+}
 
 /**
  * Initialize leaflet map
