@@ -1,6 +1,7 @@
 let restaurants;
 let neighborhoods;
 let cuisines;
+var device = '';
 var newMap;
 var markers = [];
 var wwwRoot = '';
@@ -9,10 +10,23 @@ var wwwRoot = '';
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
+  defineDevice(); //define device : desctop, tablet, mobile
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
 });
+
+defineDevice = () => {
+  let  screenWidth = window.innerWidth;
+  if (screenWidth < 768) {
+    device = 'mobile';
+  }
+  else if (screenWidth<=1024) {
+    device = 'tablet';
+  };
+  console.log("-"+device+"+");
+  return device;
+}
 
 /**
  * Fetch all neighborhoods and set their HTML.
