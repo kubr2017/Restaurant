@@ -17,7 +17,7 @@ defineDevice = () => {
   else if (screenWidth<=1024) {
     device = 'tablet';
   };
-  console.log("-"+device+"+");
+  // console.log("-"+device+"+");
   return device;
 }
 

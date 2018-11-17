@@ -154,7 +154,7 @@ class DBHelper {
     if (device.length){
       let position = restaurant.photograph.length-4;
       restaurant.photograph = [restaurant.photograph.slice(0,position),'-',device,restaurant.photograph.slice(position)].join('');
-      console.log(restaurant.photograph)
+      // console.log(restaurant.photograph)
     }
     return (`/img/${restaurant.photograph}`);
   }
