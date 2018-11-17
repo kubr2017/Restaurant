@@ -10,7 +10,7 @@ var wwwRoot = '';
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  defineDevice(); //define device : desctop, tablet, mobile
+   //define device : desctop, tablet, mobile
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
@@ -24,9 +24,11 @@ defineDevice = () => {
   else if (screenWidth<=1024) {
     device = 'tablet';
   };
-  console.log("-"+device+"+");
+  // console.log("-"+device+"+");
   return device;
 }
+
+defineDevice();
 
 /**
  * Fetch all neighborhoods and set their HTML.

@@ -6,7 +6,6 @@ var newMap;
  * Initialize map as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  defineDevice();
   initMap();
 });
 
@@ -21,6 +20,8 @@ defineDevice = () => {
   console.log("-"+device+"+");
   return device;
 }
+
+defineDevice();
 
 /**
  * Initialize leaflet map
