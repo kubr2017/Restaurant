@@ -243,8 +243,19 @@ nav h1 a {
   top: 80px;
   width: 50%;
 }*/
+
+
 .inside img{
-	width:30%;
+	width:35%;
+	margin: auto;
+	display: table-cell;
+
+}
+
+.inside #maincontent{
+	padding: 1% 2%;
+	max-width:1024px;
+	margin: 0 auto;
 }
 
 .inside #map {
