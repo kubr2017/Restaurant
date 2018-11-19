@@ -43,12 +43,14 @@ defineDevice = () => {
 defineDevice();
 
 // function intercept Tab key press Event
+
 document.addEventListener('keydown',tabIndexCatch(event));
 
 function tabIndexCatch(event) {
-    console.log(`keypressed`)
+  event.preventDefault();
+    console.log(`keypressed:`)
     if (event.keyCode == 9){
-      event.preventDefault();
+
       console.log("keyCode = 9");
       if (captionEl = document.activeElement){
         console.log('caption = active');
