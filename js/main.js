@@ -25,7 +25,7 @@ window.addEventListener('load',function(){
   var restaurantsListEl = document.getElementById('restaurants-list');
   var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
   var buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
-  captionEl.addEventListener('keydown',tabIndexCatch(event));
+
 });
 
 defineDevice = () => {
@@ -43,9 +43,10 @@ defineDevice = () => {
 defineDevice();
 
 // function intercept Tab key press Event
+document.addEventListener('keydown',tabIndexCatch(event));
 
-function tabIndexCatch() {
-    console.log(`keypressed: ${event.keyCode}`)
+function tabIndexCatch(event) {
+    console.log(`keypressed`)
     if (event.keyCode == 9){
       event.preventDefault();
       console.log("keyCode = 9");
