@@ -14,6 +14,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
+  // get elements that focused before map when using Tab key
+
+});
+
+window.addEventListener('load',function(){
+  console.log('event load');
+  var navEl = document.getElementsByTagName('nav')[0];
+  var captionEl = document.getElementsByTagName('h1')[0];
+  var restaurantsListEl = document.getElementById('restaurants-list');
+  var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
+  var buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
+  captionEl.addEventListener('keydown',tabIndexCatch(event));
 });
 
 defineDevice = () => {
@@ -29,6 +41,21 @@ defineDevice = () => {
 }
 
 defineDevice();
+
+// function intercept Tab key press Event
+
+function tabIndexCatch() {
+    console.log(`keypressed: ${event.keyCode}`)
+    if (event.keyCode == 9){
+      event.preventDefault();
+      console.log("keyCode = 9");
+      if (captionEl = document.activeElement){
+        console.log('caption = active');
+        buttonEl.focus();
+      }
+    }
+};
+
 
 /**
  * Fetch all neighborhoods and set their HTML.
