@@ -5,9 +5,9 @@ var device = '';
 var newMap;
 var markers = [];
 var wwwRoot = '';
-var buttonEl;
-var captionEl;
-var fullLoad = false;
+var buttonEl;  // for button of first restaurant in page
+var captionEl; // for header element
+var fullLoad = false; //variable to hang the state of loading process
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -51,15 +51,18 @@ defineDevice();
 document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
-  // event.preventDefault();
+  // event.preventDefault(); in case Tab pressed during loading page.
   if (!fullLoad) {
     event.preventDefault();
     return;
   }
   // console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
+  // condition in case of Header is active and Tab is pressed
   if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
     event.preventDefault();
     // console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+
+    //jump to button of first restaurant.
     buttonEl.focus();
   }
 };
