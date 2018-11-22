@@ -7,6 +7,7 @@ var markers = [];
 var wwwRoot = '';
 var buttonEl;
 var captionEl;
+var fullLoad = false;
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 window.addEventListener('load',function(){
   console.log('event load');
+  fullLoad = true;
   var navEl = document.getElementsByTagName('nav')[0];
   captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
@@ -50,7 +52,10 @@ document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
   // event.preventDefault();
-
+  if (!fullLoad) {
+    event.preventDefault();
+    return;
+  }
   // console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
   if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
     event.preventDefault();
