@@ -5,12 +5,14 @@ var device = '';
 var newMap;
 var markers = [];
 var wwwRoot = '';
+var buttonEl;
+var captionEl;
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-   //define device : desctop, tablet, mobile
+
   initMap(); // added
   fetchNeighborhoods();
   fetchCuisines();
@@ -21,10 +23,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 window.addEventListener('load',function(){
   console.log('event load');
   var navEl = document.getElementsByTagName('nav')[0];
-  var captionEl = document.getElementsByTagName('h1')[0];
+  captionEl = document.getElementsByTagName('h1')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
   var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
-  var buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
+  buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
 
 });
 
@@ -44,16 +46,18 @@ defineDevice();
 
 // function intercept Tab key press Event
 
-document.addEventListener('keydown',tabIndexCatch(event));
+document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
-  event.preventDefault();
+  // event.preventDefault();
+  
     console.log(`keypressed:`)
     if (event.keyCode == 9){
 
-      console.log("keyCode = 9");
-      if (captionEl = document.activeElement){
-        console.log('caption = active');
+      console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+      if (captionEl == document.activeElement){
+        event.preventDefault();
+        console.log(`caption: ${captionEl} active: ${document.activeElement}`);
         buttonEl.focus();
       }
     }
