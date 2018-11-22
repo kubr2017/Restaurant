@@ -7,6 +7,7 @@ var markers = [];
 var wwwRoot = '';
 var buttonEl;  // for button of first restaurant in page
 var captionEl; // for header element
+var firstRestaurantEl;
 var fullLoad = false; //variable to hang the state of loading process
 
 /**
@@ -27,7 +28,7 @@ window.addEventListener('load',function(){
   var navEl = document.getElementsByTagName('nav')[0];
   captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
-  var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
+  firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
   buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
 
 });
@@ -56,11 +57,11 @@ function tabIndexCatch(event) {
     event.preventDefault();
     return;
   }
-  // console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
+  console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
   // condition in case of Header is active and Tab is pressed
   if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
     event.preventDefault();
-    // console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+    console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
 
     //jump to button of first restaurant.
     buttonEl.focus();
