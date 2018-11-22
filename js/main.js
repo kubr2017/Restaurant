@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 window.addEventListener('load',function(){
   console.log('event load');
   var navEl = document.getElementsByTagName('nav')[0];
-  captionEl = document.getElementsByTagName('h1')[0];
+  captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
   var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
   buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
@@ -50,17 +50,13 @@ document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
   // event.preventDefault();
-  
-    console.log(`keypressed:`)
-    if (event.keyCode == 9){
 
-      console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
-      if (captionEl == document.activeElement){
-        event.preventDefault();
-        console.log(`caption: ${captionEl} active: ${document.activeElement}`);
-        buttonEl.focus();
-      }
-    }
+  // console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
+  if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
+    event.preventDefault();
+    // console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+    buttonEl.focus();
+  }
 };
 
 
