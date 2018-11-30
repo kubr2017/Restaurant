@@ -5,28 +5,49 @@ var device = '';
 var newMap;
 var markers = [];
 var wwwRoot = '';
+var buttonEl;  // for button of first restaurant in page
+var captionEl; // for header element
+var firstRestaurantEl;
+var fullLoad = false; //variable to hang the state of loading process
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-   //define device : desctop, tablet, mobile
+
   initMap(); // added
+  // checkRestaurantsInDOM();
   fetchNeighborhoods();
   fetchCuisines();
-  // get elements that focused before map when using Tab key
 
 });
 
-window.addEventListener('load',function(){
-  console.log('event load');
-  var navEl = document.getElementsByTagName('nav')[0];
-  var captionEl = document.getElementsByTagName('h1')[0];
-  var restaurantsListEl = document.getElementById('restaurants-list');
-  var firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
-  var buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
+// function that check exist button element in first restaurant
+function checkRestaurantsInDOM () {
+  console.log('started');
+  return new Promise(function(resolve){
+    let timerID = setInterval(function(){
+      console.log("interval started");
+      if (document.readyState == 'complete') {
+        console.log(`${document.readyState}`)
+        let navEl = document.getElementsByTagName('nav')[0];
+        let captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
+        let restaurantsListEl = document.getElementById('restaurants-list');
+        let firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
+        if (firstRestaurantEl) {
+          let buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
+          if (buttonEl) {
+            console.log('buttonEl appear');
+            clearInterval(timerID);
+            resolve([captionEl,buttonEl]);
+          }
+        }
+      }
+    },500)
+  })
+};
 
-});
+checkRestaurantsInDOM().then(tabIndexListener);
 
 defineDevice = () => {
   let  screenWidth = window.innerWidth;
@@ -44,20 +65,27 @@ defineDevice();
 
 // function intercept Tab key press Event
 
-document.addEventListener('keydown',tabIndexCatch(event));
+function tabIndexListener(arr) {
+  captionEl = arr[0];
+  buttonEl = arr[1];
+  console.log('tabIndexListener  started');
+  document.addEventListener('keydown',tabIndexCatch);
 
-function tabIndexCatch(event) {
-  event.preventDefault();
-    console.log(`keypressed:`)
-    if (event.keyCode == 9){
+  function tabIndexCatch(event) {
+    // event.preventDefault();
+    console.log(`keypressed, captionEl: ${event.target.tagName} active: ${document.activeElement.tagName}`)
+    // condition in case of Header is active and Tab is pressed
+    if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
+      event.preventDefault();
+      console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
 
-      console.log("keyCode = 9");
-      if (captionEl = document.activeElement){
-        console.log('caption = active');
-        buttonEl.focus();
-      }
+      //jump to button of first restaurant.
+      buttonEl.focus();
     }
+  };
+
 };
+
 
 
 /**
