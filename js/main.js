@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
-defineDevice();
 
 // function that check exist button element in first restaurant
 function checkRestaurantsInDOM () {
@@ -62,7 +61,7 @@ defineDevice = () => {
   return device;
 }
 
-
+defineDevice();
 
 // function intercept Tab key press Event
 
