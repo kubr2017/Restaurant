@@ -8,7 +8,6 @@ var wwwRoot = '';
 var buttonEl;  // for button of first restaurant in page
 var captionEl; // for header element
 var firstRestaurantEl;
-var fullLoad = false; //variable to hang the state of loading process
 
 /**
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
@@ -47,7 +46,10 @@ function checkRestaurantsInDOM () {
   })
 };
 
-checkRestaurantsInDOM().then(tabIndexListener);
+checkRestaurantsInDOM().then(function(arr){
+  captionEl = arr[0];
+  buttonEl = arr[1];
+});
 
 defineDevice = () => {
   let  screenWidth = window.innerWidth;
@@ -62,30 +64,26 @@ defineDevice = () => {
 }
 
 defineDevice();
-
-// function intercept Tab key press Event
-
-function tabIndexListener(arr) {
-  captionEl = arr[0];
-  buttonEl = arr[1];
-  console.log('tabIndexListener  started');
-  document.addEventListener('keydown',tabIndexCatch);
-
-  function tabIndexCatch(event) {
-    // event.preventDefault();
-    console.log(`keypressed, captionEl: ${event.target.tagName} active: ${document.activeElement.tagName}`)
-    // condition in case of Header is active and Tab is pressed
-    if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
+// listener for avoiding TAB-jump cursor to MAP markers at slow speed connection
+document.addEventListener('keydown',function(event){
+  console.log('keydown of first listener');
+  if (event.keyCode ==9){
+    console.log('keyCode 9 in first listener');
+    if(buttonEl){
+      if(captionEl == document.activeElement){
+        event.preventDefault();
+        console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+        buttonEl.focus();
+      }else{
+        console.log('loaded but not in Capition');
+      }
+    }else{
+      console.log('not loaded prevented default');
       event.preventDefault();
-      console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
-
-      //jump to button of first restaurant.
-      buttonEl.focus();
     }
-  };
 
-};
-
+  }
+});
 
 
 /**
