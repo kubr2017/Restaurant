@@ -16,11 +16,12 @@ var fullLoad = false; //variable to hang the state of loading process
 document.addEventListener('DOMContentLoaded', (event) => {
 
   initMap(); // added
-  // checkRestaurantsInDOM();
   fetchNeighborhoods();
   fetchCuisines();
 
 });
+
+defineDevice();
 
 // function that check exist button element in first restaurant
 function checkRestaurantsInDOM () {
@@ -61,7 +62,7 @@ defineDevice = () => {
   return device;
 }
 
-defineDevice();
+
 
 // function intercept Tab key press Event
 
