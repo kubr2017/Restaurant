@@ -48,13 +48,18 @@ defineDevice();
 document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
+  console.log(`key pressed`);
   /// in case Tab pressed during loading page.
   if(event.keyCode == 9){ // in case TAB key pressed
+    console.log(`TAB pressed`);
     if (buttonEl){ //if restaurants list complete
+      console.log(`if buttonEl case`);
       if (captionEl == document.activeElement){ //if cursor on capition of page
+        console.log(`capition in focus`);
         buttonEl.focus();//cursor jump to first button element
       }
     }else{//if restaurants list still loading prevent TAB key
+      console.log(`buttoneEl not exist`);
       preventDefault();
     }
   }
