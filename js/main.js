@@ -22,16 +22,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
-window.addEventListener('load',function(){
-  console.log('event load');
-  fullLoad = true;
-  var navEl = document.getElementsByTagName('nav')[0];
-  captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
-  var restaurantsListEl = document.getElementById('restaurants-list');
-  firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
-  buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
-
-});
+// window.addEventListener('load',function(){
+//   console.log('event load');
+//   fullLoad = true;
+//
+//
+// });
 
 defineDevice = () => {
   let  screenWidth = window.innerWidth;
@@ -52,20 +48,31 @@ defineDevice();
 document.addEventListener('keydown',tabIndexCatch);
 
 function tabIndexCatch(event) {
-  // event.preventDefault(); in case Tab pressed during loading page.
-  if (!fullLoad) {
-    event.preventDefault();
-    return;
+  /// in case Tab pressed during loading page.
+  if(event.keyCode == 9){ // in case TAB key pressed
+    if (buttonEl){ //if restaurants list complete
+      if (captionEl == document.activeElement){ //if cursor on capition of page
+        buttonEl.focus();//cursor jump to first button element
+      }
+    }else{//if restaurants list still loading prevent TAB key
+      preventDefault();
+    }
   }
-  console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
-  // condition in case of Header is active and Tab is pressed
-  if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
-    event.preventDefault();
-    console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
 
-    //jump to button of first restaurant.
-    buttonEl.focus();
-  }
+  //
+  // if (!buttonEl) {
+  //   event.preventDefault();
+  //   return;
+  // }
+  // console.log(`keypressed, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`)
+  // // condition in case of Header is active and Tab is pressed
+  // if ((event.keyCode == 9)&&(captionEl == document.activeElement)) {
+  //   event.preventDefault();
+  //   console.log(`keyCode = 9, captionEl: ${captionEl.tagName} active: ${document.activeElement.tagName}`);
+  //
+  //   //jump to button of first restaurant.
+  //   buttonEl.focus();
+  // }
 };
 
 
@@ -206,6 +213,14 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
     ul.append(createRestaurantHTML(restaurant));
   });
   addMarkersToMap();
+
+  //Block for Tabindex issue
+  var navEl = document.getElementsByTagName('nav')[0];
+  captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
+  var restaurantsListEl = document.getElementById('restaurants-list');
+  firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
+  buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
+  console.log(`got button element: ${buttonEl}`);
 }
 
 /**
