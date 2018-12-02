@@ -14,7 +14,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request).then(function(resp) {
-      console.log(`resp=${resp.clone()}`);
+      // console.log(`resp=${resp.clone()}`);
       return resp || fetch(event.request).then(function(response) {
         console.log(`go to fetch event.req=${event.request}`);
         let responseClone = response.clone();
