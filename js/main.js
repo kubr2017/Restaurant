@@ -161,7 +161,22 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
-  image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // <img srcset="elva-fairy-320w.jpg 320w,
+  //            elva-fairy-480w.jpg 480w,
+  //            elva-fairy-800w.jpg 800w"
+  //    sizes="(max-width: 320px) 280px,
+  //           (max-width: 480px) 440px,
+  //           800px"
+  //    src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy">
+  let originalPic = DBHelper.imageUrlForRestaurant(restaurant);
+  let originalPicLength = originalPic.length-4;
+  let nameWithoutExt = originalPic.slice(1,originalPicLength);
+  let tabletPic = nameWithoutExt + '-tablet.jpg';
+  let mobilePic = nameWithoutExt + '-mobile.jpg';
+  image.srcset = `${mobilePic} 450w, ${tabletPic} 600w, ${originalPic} 800w`;
+  image.sizes = `(max-width:600px) 450px, (max-width:1024px) 800px, (min-width:1025) 800px`
+  console.log(`srcset= ${image.srcset}`);
   li.append(image);
 
   const name = document.createElement('h1');
