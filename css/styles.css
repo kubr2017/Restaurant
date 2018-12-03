@@ -245,6 +245,7 @@ nav h1 a {
 }*/
 .inside img{
 	width:35%;
+	min-width: 300px;
 	margin: auto;
 	display: block;
 
