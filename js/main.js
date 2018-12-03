@@ -175,7 +175,8 @@ createRestaurantHTML = (restaurant) => {
   let tabletPic = nameWithoutExt + '-tablet.jpg';
   let mobilePic = nameWithoutExt + '-mobile.jpg';
   image.srcset = `${mobilePic} 450w, ${tabletPic} 600w, ${originalPic} 800w`;
-  image.sizes = `(max-width:600px) 450px, (max-width:1024px) 600px, (min-width:1025) 800px`;
+  image.sizes = `(max-width:600px) 450px, (max-width:1024px) 600px, 800px`;
+  image.src = DBHelper.imageUrlForRestaurant(restaurant);
   console.log(`srcset= ${image.srcset}`);
   li.append(image);
 
