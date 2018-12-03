@@ -246,7 +246,7 @@ nav h1 a {
 .inside img{
 	width:35%;
 	margin: auto;
-	display: table-cell;
+	display: block;
 
 }
 
@@ -254,7 +254,7 @@ nav h1 a {
 	padding: 1% 2%;
 	max-width:1024px;
 	margin: 0 auto;
-} 
+}
 
 .inside #map {
   height: 25vh;
