@@ -28,20 +28,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //
 //
 // });
-
-defineDevice = () => {
-  let  screenWidth = window.innerWidth;
-  if (screenWidth < 768) {
-    device = 'mobile';
-  }
-  else if (screenWidth<=1024) {
-    device = 'tablet';
-  };
-  // console.log("-"+device+"+");
-  return device;
-}
-
-defineDevice();
+// 
+// defineDevice = () => {
+//   let  screenWidth = window.innerWidth;
+//   if (screenWidth < 768) {
+//     device = 'mobile';
+//   }
+//   else if (screenWidth<=1024) {
+//     device = 'tablet';
+//   };
+//   // console.log("-"+device+"+");
+//   return device;
+// }
+//
+// defineDevice();
 
 // function intercept Tab key press Event
 
