@@ -246,10 +246,10 @@ nav h1 a {
 
 
 .inside img{
+	min-width: 300px;
+	display: block;
 	width:35%;
 	margin: auto;
-	display: table-cell;
-
 }
 
 .inside #maincontent{
