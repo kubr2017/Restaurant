@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //
 //
 // });
-// 
+//
 // defineDevice = () => {
 //   let  screenWidth = window.innerWidth;
 //   if (screenWidth < 768) {
@@ -221,7 +221,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 
   //Block for Tabindex issue
   var navEl = document.getElementsByTagName('nav')[0];
-  captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
+  captionEl = document.getElementsByTagName('h2')[0].getElementsByTagName('a')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
   firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
   buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
@@ -256,7 +256,7 @@ createRestaurantHTML = (restaurant) => {
   console.log(`srcset= ${image.srcset}`);
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
