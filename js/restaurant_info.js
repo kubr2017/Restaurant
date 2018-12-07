@@ -9,19 +9,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
   initMap();
 });
 
-defineDevice = () => {
-  let  screenWidth = window.innerWidth;
-  if (screenWidth < 768) {
-    device = 'mobile';
-  }
-  else if (screenWidth<=1024) {
-    device = 'tablet';
-  };
-  // console.log("-"+device+"+");
-  return device;
-}
-
-defineDevice();
+// defineDevice = () => {
+//   let  screenWidth = window.innerWidth;
+//   if (screenWidth < 768) {
+//     device = 'mobile';
+//   }
+//   else if (screenWidth<=1024) {
+//     device = 'tablet';
+//   };
+//   // console.log("-"+device+"+");
+//   return device;
+// }
+//
+// defineDevice();
 
 /**
  * Initialize leaflet map
