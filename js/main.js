@@ -253,6 +253,7 @@ createRestaurantHTML = (restaurant) => {
   console.log(`DPR:${window.devicePixelRatio}`);
   // image.sizes = `(max-width:600px) 450px, (max-width:1024px) 600px, 800px`;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.altDescription;
   console.log(`srcset= ${image.srcset}`);
   li.append(image);
 
