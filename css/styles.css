@@ -54,7 +54,7 @@ footer{
 ul, li {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
-	color: #333;
+	/* color: #333; */
 }
 a {
 	color: orange;
@@ -113,9 +113,11 @@ nav h1 a {
 #breadcrumb {
     padding: 10px 40px 16px;
     list-style: none;
-    background-color: #eee;
+    /* background-color: #ccc; */
     font-size: 17px;
     margin: 0;
+		text-align: left;
+		color: #aaa;
 }
 
 /* Display list items side by side */
@@ -123,10 +125,12 @@ nav h1 a {
     display: inline;
 }
 
+
+
 /* Add a slash symbol (/) before/behind each list item */
 #breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
+    /* padding: 8px;
+    color: black; */
     content: "/\00a0";
 }
 
@@ -262,4 +266,5 @@ nav h1 a {
   height: 25vh;
   width: 100%;
   background-color: #ccc;
+	/* max-width:100px; */
 }
