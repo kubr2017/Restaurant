@@ -1,7 +1,7 @@
 //install cache
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('v1').then(function(cache) {
+    caches.open('version-developers.google.com').then(function(cache) {
       return cache.addAll([
         '/'
       ]);
