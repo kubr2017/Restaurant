@@ -28,20 +28,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
 //
 //
 // });
-
-defineDevice = () => {
-  let  screenWidth = window.innerWidth;
-  if (screenWidth < 768) {
-    device = 'mobile';
-  }
-  else if (screenWidth<=1024) {
-    device = 'tablet';
-  };
-  // console.log("-"+device+"+");
-  return device;
-}
-
-defineDevice();
+//
+// defineDevice = () => {
+//   let  screenWidth = window.innerWidth;
+//   if (screenWidth < 768) {
+//     device = 'mobile';
+//   }
+//   else if (screenWidth<=1024) {
+//     device = 'tablet';
+//   };
+//   // console.log("-"+device+"+");
+//   return device;
+// }
+//
+// defineDevice();
 
 // function intercept Tab key press Event
 
@@ -221,7 +221,7 @@ fillRestaurantsHTML = (restaurants = self.restaurants) => {
 
   //Block for Tabindex issue
   var navEl = document.getElementsByTagName('nav')[0];
-  captionEl = document.getElementsByTagName('h1')[0].getElementsByTagName('a')[0];
+  captionEl = document.getElementsByTagName('h2')[0].getElementsByTagName('a')[0];
   var restaurantsListEl = document.getElementById('restaurants-list');
   firstRestaurantEl = restaurantsListEl.getElementsByTagName('li')[0];
   buttonEl = firstRestaurantEl.getElementsByTagName('a')[0];
@@ -236,10 +236,28 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   image.className = 'restaurant-img';
+  // image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  // <img srcset="elva-fairy-320w.jpg 320w,
+  //            elva-fairy-480w.jpg 480w,
+  //            elva-fairy-800w.jpg 800w"
+  //    sizes="(max-width: 320px) 280px,
+  //           (max-width: 480px) 440px,
+  //           800px"
+  //    src="elva-fairy-800w.jpg" alt="Elva dressed as a fairy">
+  let originalPic = DBHelper.imageUrlForRestaurant(restaurant);
+  let originalPicLength = originalPic.length-4;
+  let nameWithoutExt = originalPic.slice(0,originalPicLength);
+  let tabletPic = nameWithoutExt + '-tablet.jpg';
+  let mobilePic = nameWithoutExt + '-mobile.jpg';
+  image.srcset = `${mobilePic} 2.5x, ${tabletPic} 2x, ${originalPic} 1x`;
+  console.log(`DPR:${window.devicePixelRatio}`);
+  // image.sizes = `(max-width:600px) 450px, (max-width:1024px) 600px, 800px`;
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.altDescription;
+  console.log(`srcset= ${image.srcset}`);
   li.append(image);
 
-  const name = document.createElement('h1');
+  const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
