@@ -17,7 +17,7 @@ self.addEventListener('fetch', function(event) {
       // console.log(`resp=${resp.clone()}`);
       return resp || fetch(event.request).then(function(response) {
         console.log(`go to fetch event.req=${event.request}`);
-        if (!resp.status===202) {
+        if (!response.status===202) {
           console.log(`resp.status !=202`);
           let responseClone = response.clone();
           caches.open('v1').then(function(cache) {
