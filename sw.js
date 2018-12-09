@@ -43,7 +43,7 @@ self.addEventListener('fetch', function(event) {
     caches.open('v1').then(function(cache) {
       return cache.match(event.request).then(function (response) {
         return response || fetch(event.request).then(function(response) {
-          if (!event.request.status===202){
+          if (!(event.request.status===202)){
             cache.put(event.request, response.clone());
           }
           return response;
