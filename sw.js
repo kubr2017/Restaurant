@@ -17,16 +17,20 @@ self.addEventListener('fetch', function(event) {
       // console.log(`resp=${resp.clone()}`);
       return resp || fetch(event.request).then(function(response) {
         console.log(`go to fetch event.req=${event.request}`);
-        if (!response.status===202) {
-          console.log(`resp.status !=202`);
-          let responseClone = response.clone();
-          caches.open('v1').then(function(cache) {
-            console.log(`v1 opened`);
-            cache.put(event.request, responseClone);
-            console.log(`put to cache ${event.request}`);
-          });
-        }
-        return response;
+        // let responseClone = response.clone();
+        // if (responseClone.status===202) {
+        //   return response;
+        // } else
+           //{
+            console.log(`resp.status !=202`);
+            let responseClone = response.clone();
+            caches.open('v1').then(function(cache) {
+              console.log(`v1 opened`);
+              cache.put(event.request, responseClone);
+              console.log(`put to cache ${event.request}`);
+              return response;
+            });
+        //  }
       })
     }).catch(function() {
       console.log(`error hapened`);
@@ -51,11 +55,29 @@ self.addEventListener('fetch', function(event) {
 //   );
 // });
 
-
-
-
-
-
+// from old2 branch
+//
+// self.addEventListener('fetch', function(event) {
+//   event.respondWith(
+//     caches.match(event.request).then(function(resp) {
+//       // console.log(`resp=${resp.clone()}`);
+//       return resp || fetch(event.request).then(function(response) {
+//         console.log(`go to fetch event.req=${event.request}`);
+//         let responseClone = response.clone();
+//         caches.open('v1').then(function(cache) {
+//           console.log(`v1 opened`);
+//           cache.put(event.request, responseClone);
+//         });
+//         return response;
+//       });
+//     }).catch(function() {
+//       console.log(`error hapened`);
+//       return caches.match('/img/No-reception-signal.jpg');
+//     })
+//   );
+// });
+//
+//
 
 
 
