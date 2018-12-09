@@ -15,20 +15,19 @@ self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request).then(function(resp) {
       // console.log(`resp=${resp.clone()}`);
-      return resp || (if (!resp.status===202) {
-        console.log(`resp.status = ${resp.status}`);
-        fetch(event.request).then(function(response) {
-          console.log(`go to fetch event.req=${event.request}`);
+      return resp || fetch(event.request).then(function(response) {
+        console.log(`go to fetch event.req=${event.request}`);
+        if (!resp.status===202) {
+          console.log(`resp.status !=202`);
           let responseClone = response.clone();
           caches.open('v1').then(function(cache) {
             console.log(`v1 opened`);
             cache.put(event.request, responseClone);
+            console.log(`put to cache ${event.request}`);
           });
+        }
         return response;
-        })
-      }else{
-        console.log(`Impossible get request from network and cache too`);
-      });
+      })
     }).catch(function() {
       console.log(`error hapened`);
       return caches.match('/img/No-reception-signal.jpg');
